@@ -1,0 +1,106 @@
+.left h1 {
+    margin-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.right button {
+    width: 150px;
+    padding: 5px;
+    border: none;
+    margin-right: 10px;
+    background-color: rgb(29, 7, 70);
+    color: white;
+}
+
+.right .second {
+    background-color: rgb(226, 183, 41);
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2a4b77;
+    clip-path: circle(70% at right -20%);
+}
+
+.form {
+    text-align: center;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute
+}
+
+.form h1 {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.form p {
+    font-size: 12px;
+    line-height: 1px;
+    color: rgb(56, 51, 51);
+    font-weight: 600;
+}
+
+.form input {
+    margin-top: 20px;
+    width: 250px;
+    height: 35px;
+    text-decoration: none;
+    outline: none;
+    border: 1px solid rgb(182, 174, 174);
+    border-radius: 3px;
+}
+
+.form input::placeholder {
+    font-size: 10px;
+    font-weight: bold;
+    padding-left: 50px;
+    color: rgb(165, 159, 159);
+}
+
+.form button {
+    margin-top: 15px;
+    width: 250px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background-color: rgb(29, 7, 70);
+    padding: 10px;
+}
+
+.checking {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.checking .larger {}
+
+
+/* .rightt {
+    background-color: green;
+    width: 1005;
+} */
+
+@media(max-width:1024px) {
+    .right button {
+        display: none;
+    }
+    .circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #4d91e9;
+        clip-path: circle(80% at right -20%);
+    }
+}
