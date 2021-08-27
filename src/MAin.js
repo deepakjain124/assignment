@@ -1,36 +1,89 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './main.css'
 import { Input } from 'antd'
 import { Checkbox } from 'antd'
+
 const Main = () => {
-    const [email, setemail] = useState()
-    const [Password, setpassword] = useState()
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
     const InputEvent = (e) => {
-        setemail(e.target.value)
+        setEmail(e.target.value)
     }
     const InputEvent2 = (e) => {
-        setpassword(e.target.value)
+        setPassword(e.target.value)
     }
+
+    console.log(password)
+        //   const post = (e) => {
+        //     e.preventDefault();
+        //     if (email && Password) {
+        //       const responce = fetch("https://reqres.in/api/login", {
+        //         method: "POST",
+        //         headers: {
+        //           "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({
+        //           email,
+        //           Password,
+        //         }),
+        //       });
+        //       if (responce) {
+        //         alert("data stored successfully");
+        //         setEmail("");
+        //         setPassword("");
+        //       }
+        //     } else {
+        //       alert("Missing Password");
+        //       setEmail("");
+        //       setPassword("");
+        //     }
+        //   };
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+    }
+
     const post = (e) => {
         e.preventDefault()
-        if (email && Password) {
-            const responce = fetch('https://reqres.in/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    Password,
-                }),
-            })
-            if (responce) {
-                alert('data stored successfully')
-            }
+        if (email && password) {
+            fetch('https://reqres.in/api/login', requestOptions)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                    if (data.token) {
+                        setEmail('')
+                        setPassword('')
+                        alert('user login succesfully')
+                    } else {
+                        alert('User not found')
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                    alert('Api is not vallid')
+                })
         } else {
-            alert('please fill the required data')
+            alert('Fill details properly')
         }
     }
+
+    // useEffect(() =>{
+    //     fetch("https://reqres.in/api/login", requestOptions)
+    //     .then(response => {
+    //         return response.json()
+    //     }).then(data => console.log(data));
+    // }, []);
+
+    // useEffect(() => {
+    //     fetch("https://reqres.in/api/login")
+    //     .then(response => {
+    //         return response.json();
+    //     }).then((data) => data.data.map(value => console.log(value.name)));
+    // }, [])
     return ( <
         >
         <
@@ -60,7 +113,7 @@ const Main = () => {
         Input placeholder = "Password*"
         size = "small"
         onChange = { InputEvent2 }
-        value = { Password }
+        value = { password }
         />{' '} <
         br / >
         <
@@ -74,14 +127,3 @@ const Main = () => {
     )
 }
 export default Main
-
-// fetch('https://reqres.in/api/login', {
-//             method: 'POST',
-//             headers: {
-//                 Accept: 'applicaton/json',
-//                 'content-Type': 'application/Json',
-//             },
-//             body: JSON.stringify(data),
-//         }).then((result) => {
-//             console.warn('result', result)
-//         })
